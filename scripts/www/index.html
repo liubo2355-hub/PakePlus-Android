@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>党的知识刷题模拟系统</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>党的知识刷题模拟系统</h1>
+        <p id="questionStats">正在加载题库...</p>
+      </div>
+      <button id="homeButton" class="icon-button" type="button" title="返回首页">首页</button>
+    </header>
+
+    <main>
+      <section id="homeView" class="home-view">
+        <div class="mode-grid">
+          <button id="practiceEntry" class="mode-card practice" type="button">
+            <span>练习模式</span>
+            <strong>不限题量，即答即判</strong>
+            <small>可筛选题型，适合反复刷题和整理错题。</small>
+          </button>
+          <button id="examEntry" class="mode-card exam" type="button">
+            <span>模拟考试</span>
+            <strong>50 题，每题 2 分</strong>
+            <small>随机抽题，交卷后显示总分和错题回看。</small>
+          </button>
+        </div>
+
+        <div class="home-tools">
+          <label>
+            练习题型
+            <select id="typeFilter">
+              <option value="all">全部题型</option>
+              <option value="single">单项选择题</option>
+              <option value="multiple">多项选择题</option>
+              <option value="judge">判断题</option>
+              <option value="blank">填空题</option>
+            </select>
+          </label>
+          <label class="switch-row">
+            <input id="shufflePractice" type="checkbox" checked>
+            <span>练习模式随机顺序</span>
+          </label>
+          <button id="historyEntry" class="secondary-button" type="button">答题历史</button>
+          <button id="clearHistoryButton" class="light-button" type="button">清空历史</button>
+        </div>
+
+        <div class="summary-grid">
+          <div><strong id="totalCount">0</strong><span>总题数</span></div>
+          <div><strong id="singleCount">0</strong><span>单选</span></div>
+          <div><strong id="multipleCount">0</strong><span>多选</span></div>
+          <div><strong id="judgeCount">0</strong><span>判断</span></div>
+          <div><strong id="blankCount">0</strong><span>填空</span></div>
+        </div>
+      </section>
+
+      <section id="quizView" class="quiz-view hidden">
+        <div class="quiz-main">
+          <div class="quiz-panel">
+            <div class="quiz-meta">
+              <span id="modeLabel">练习模式</span>
+              <span id="progressLabel">第 1 题 / 共 1 题</span>
+            </div>
+            <h2 id="questionTitle"></h2>
+            <p id="questionStem"></p>
+            <div id="optionArea" class="option-area"></div>
+            <div id="feedback" class="feedback hidden"></div>
+            <div class="quiz-actions">
+              <button id="prevButton" type="button" class="secondary-button">上一题</button>
+              <button id="answerButton" type="button">确认答案</button>
+              <button id="nextButton" type="button">下一题</button>
+              <button id="submitButton" type="button" class="danger-button hidden">交卷</button>
+            </div>
+          </div>
+
+          <aside id="answerSheet" class="answer-sheet">
+            <div class="sheet-header">
+              <strong>答题卡</strong>
+              <span id="answeredCount">已答 0 / 0</span>
+            </div>
+            <div id="sheetGrid" class="sheet-grid"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="resultView" class="result-view hidden">
+        <div class="result-card">
+          <span>模拟考试结果</span>
+          <strong id="scoreLabel">0 分</strong>
+          <p id="resultSummary"></p>
+          <div class="result-actions">
+            <button id="reviewWrongButton" type="button">回看错题</button>
+            <button id="newExamButton" type="button">再考一次</button>
+            <button id="backHomeButton" type="button" class="secondary-button">返回首页</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="historyView" class="history-view hidden">
+        <div class="history-header">
+          <div>
+            <h2>答题历史</h2>
+            <p id="historySummary">暂无答题历史</p>
+          </div>
+          <button id="historyBackButton" class="secondary-button" type="button">返回首页</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <button id="sheetToggle" class="sheet-toggle hidden" type="button">答题卡</button>
+  <script src="./app.js"></script>
+</body>
+</html>
